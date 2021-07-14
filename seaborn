@@ -1,0 +1,48 @@
+#ヒストグラム用
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# グラフを描画するライブラリ
+from matplotlib import pyplot as plt
+import seaborn as sns; sns.set() # sns.set() ==> グラフの見た目をseabornに合わせる
+%matplotlib inline
+
+
+#ファイル読み込み
+f = open('/content/drive/MyDrive/CDMC/CDMC2021_IoTMalware/CDMC2021_IoTMalware_Test.data', 'r')
+datalist = f.readlines()
+f.close()
+
+#各行を空白で区切る
+v = []
+for w in datalist:
+  a = w
+  a_sp = a.split()
+  #print(a_sp)
+  b = len(a_sp)
+  v.append(b)
+print(v)
+ 
+#ヒストグラム作成
+#plt.hist(v, range=(0, 8000))
+#plt.show()
+
+# ヒストグラムを描画
+y = v # カテゴリー
+
+ax = plt.axes()
+sns.distplot(
+y,
+bins=13,
+color='blue',
+label='category',
+kde=False,
+rug=False
+)
+plt.legend() # 凡例を表示
+
+ax.set(xlabel ='x-axis', ylabel='y-axis', xlim=(40000,60000), ylim=(0,50))
+ax.set_title("Test data")
+
+#Testは要素数約５００００が最大
+
